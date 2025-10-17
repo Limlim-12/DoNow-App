@@ -1,0 +1,327 @@
+/* General Styling */
+:root {
+    /* -- Light Mode Palette -- */
+    --bg-color: #BEB0A7;
+    /* Silver */
+    --font-color: #040303;
+    /* Black */
+    --primary-color: #3A4E48;
+    /* Dark Slate Gray */
+    --container-bg: #f5f1ef;
+    /* Lighter Silver/Off-white */
+    --task-bg: #d4c9c2;
+    /* Darker Silver */
+    --border-color: #6A7B76;
+    /* Gray */
+
+    /* -- Universal Colors -- */
+    --accent-color: #8B9D83;
+    /* Cambridge Blue */
+    --danger-color: #e74c3c;
+    --success-color: #2ecc71;
+    --transition-speed: 0.3s;
+}
+
+/* START: DARK MODE THEME */
+body.dark-mode {
+    --bg-color: #040303;
+    /* Black */
+    --font-color: #BEB0A7;
+    /* Silver */
+    --primary-color: #8B9D83;
+    /* Cambridge Blue */
+    --container-bg: #3A4E48;
+    /* Dark Slate Gray */
+    --task-bg: #2a3a35;
+    /* Darker Slate Gray */
+    --border-color: #6A7B76;
+    /* Gray */
+}
+
+/* END: DARK MODE THEME */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    display: flex;
+    /* ADD THIS */
+    flex-direction: column;
+    /* ADD THIS */
+    justify-content: center;
+    align-items: center;
+    /* Change flex-start to center for better alignment */
+    min-height: 100vh;
+    /* ADD THIS or confirm it's there */
+    padding: 2rem;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Find this existing block */
+.app-container {
+    width: 100%;
+    max-width: 550px;
+    background-color: var(--container-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: background-color var(--transition-speed);
+    flex-grow: 1;
+    /* ADD THIS */
+    display: flex;
+    /* ADD THIS - Helps internal structure */
+    flex-direction: column;
+    /* ADD THIS - Helps internal structure */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* THEME TOGGLE BUTTON */
+#theme-toggle-button {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: none;
+    border: 2px solid var(--border-color);
+    color: var(--font-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+#theme-toggle-button:hover {
+    background-color: var(--task-bg);
+    transform: scale(1.1);
+}
+
+header h1 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+header p {
+    font-size: 0.9rem;
+    color: var(--border-color);
+    /* Updated */
+}
+
+/* Task Form */
+#task-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+#task-input {
+    flex-grow: 1;
+    padding: 0.75rem;
+    border: 2px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all var(--transition-speed);
+}
+
+#task-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#task-form button {
+    padding: 0.75rem 1.25rem;
+    border: none;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    /* Set to white for contrast */
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#task-form button:hover {
+    opacity: 0.8;
+}
+
+/* TIMER STYLES */
+.timer-container {
+    text-align: center;
+    background-color: var(--task-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    transition: background-color var(--transition-speed);
+}
+
+.timer-title {
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--border-color);
+    /* Updated */
+    margin-bottom: 0.5rem;
+}
+
+#timer-display {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.timer-controls button {
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    border: 2px solid var(--border-color);
+    background-color: transparent;
+    color: var(--font-color);
+    font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.timer-controls button:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
+}
+
+/* Task List */
+#task-list {
+    list-style: none;
+}
+
+.no-tasks {
+    text-align: center;
+    color: var(--border-color);
+    /* Updated */
+    padding: 1rem;
+    background-color: var(--task-bg);
+    border-radius: 8px;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--task-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    transition: all 0.2s ease-in-out;
+}
+
+#task-list li:not(.no-tasks):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#task-list li.completed {
+    opacity: 0.6;
+}
+
+#task-list li.completed .task-text {
+    text-decoration: line-through;
+    color: var(--border-color);
+    /* Updated */
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
+
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 2px solid var(--border-color);
+    /* Updated */
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.task-checkbox.checked {
+    background-color: var(--accent-color);
+    /* Using Accent Color */
+    border-color: var(--accent-color);
+    /* Using Accent Color */
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+#task-list li:hover .delete-btn {
+    opacity: 1;
+}
+
+/* START: UPDATED FOOTER STYLES */
+.app-footer {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    color: var(--border-color);
+    margin-top: 1rem;
+    /* Added some space above the footer */
+}
+
+.app-footer p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    /* Increased gap for icons */
+}
+
+.footer-links a {
+    color: var(--border-color);
+    font-size: 1.5rem;
+    /* Made icons larger */
+    text-decoration: none;
+    transition: color 0.3s, transform 0.3s;
+    display: inline-block;
+    /* Needed for transform */
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    transform: scale(1.2);
+    /* Added a nice hover effect */
+}
+
+/* END: UPDATED FOOTER STYLES */

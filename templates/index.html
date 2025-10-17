@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DoNow App</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <header>
+            <button id="theme-toggle-button">🌙</button>
+            <h1>DoNow App 🧭</h1>
+            <p>“Do it now, not later.”</p>
+        </header>
+
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="What needs to be done?" autocomplete="off" required>
+            <button type="submit">Add Task</button>
+        </form>
+
+        <section class="timer-container">
+            <h2 class="timer-title">Focus Zone</h2>
+            <div id="timer-display">25:00</div>
+            <div class="timer-controls">
+                <button id="start-timer-btn">Start</button>
+                <button id="pause-timer-btn">Pause</button>
+                <button id="reset-timer-btn">Reset</button>
+            </div>
+        </section>
+
+        <main>
+            <ul id="task-list">
+            </ul>
+        </main>
+
+    </div>
+    <footer class="app-footer">
+        <p>Developer: Engr. Limuel Ongtingco</p>
+        <ul class="footer-links">
+            <li><a href="https://www.facebook.com/Limuel Ongtingco" target="_blank" title="Facebook"><i
+            class="fab fa-facebook-f"></i></a></li>
+            <li><a href="https://www.instagram.com/_leumil" target="_blank" title="Instagram"><i
+            class="fab fa-instagram"></i></a></li>
+            <li><a href="https://github.com/Limlim-12" target="_blank" title="Github"><i class="fab fa-github"></i></a>
+            </li>
+            <li><a href="mailto:lim.coronatel@gmail.com" title="Email"><i class="fas fa-envelope"></i></a></li>
+        </ul>
+    </footer>
+    <script src="../assets/script.js"></script>
+</body>
+
+</html>
