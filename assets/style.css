@@ -325,3 +325,52 @@ header p {
 }
 
 /* END: UPDATED FOOTER STYLES */
+
+
+/* START: RESPONSIVE STYLES FOR MOBILE */
+@media (max-width: 768px) {
+    body {
+        /* Reduce padding on the sides for smaller screens */
+        padding: 1rem;
+    }
+
+    .app-container {
+        /* Reduce padding inside the main container */
+        padding: 1.5rem;
+        /* Ensure it doesn't get too small */
+        min-height: auto;
+    }
+
+    header h1 {
+        /* Slightly smaller heading on mobile */
+        font-size: 1.8rem;
+    }
+
+    #task-form {
+        /* Allow the button to wrap below the input if needed */
+        flex-wrap: wrap;
+    }
+
+    #task-input {
+        /* Make the input take full width when wrapped */
+        flex-basis: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    #task-form button {
+        /* Make the button take full width when wrapped */
+        flex-basis: 100%;
+    }
+
+    #timer-display {
+        /* Make the timer font smaller to prevent overflow */
+        font-size: 3rem;
+    }
+
+    .app-footer {
+        /* Reduce the top margin for a tighter layout */
+        margin-top: 0;
+    }
+}
+
+/* END: RESPONSIVE STYLES FOR MOBILE */
