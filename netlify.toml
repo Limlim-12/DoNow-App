@@ -1,0 +1,14 @@
+# This tells Netlify how to build the site.
+[build]
+  # This sets the "publish directory" to your entire project folder.
+  # Now, both 'assets' and 'templates' will be uploaded.
+  publish = "."
+
+# This section tells Netlify how to handle requests.
+[[redirects]]
+  # When a user visits the main URL of your site...
+  from = "/"
+  # ...show them this file instead.
+  to = "/templates/index.html"
+  # Status 200 means "rewrite the path". The user's URL bar won't change.
+  status = 200
