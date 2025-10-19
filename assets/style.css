@@ -121,7 +121,7 @@ header p {
 /* Task Form */
 #task-form {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.2rem;
     margin-bottom: 2rem;
 }
 
@@ -131,15 +131,20 @@ header p {
     border: 2px solid var(--border-color);
     background-color: var(--bg-color);
     color: var(--font-color);
-    border-radius: 8px;
+    border-radius: 8px 0 0 8px; /* <-- UPDATE THIS LINE */
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
     transition: all var(--transition-speed);
+    border-right: none; /* <-- ADD THIS LINE */
+    position: relative; /* <-- ADD THIS LINE */
+    z-index: 1; /* <-- ADD THIS LINE */
 }
 
 #task-input:focus {
     outline: none;
     border-color: var(--primary-color);
+    z-index: 2; /* Bring to front on focus */
+  
 }
 
 #task-form button {
@@ -158,6 +163,36 @@ header p {
 #task-form button:hover {
     opacity: 0.8;
 }
+
+/* START: NEW VOICE BUTTON STYLES */
+#voice-input-btn {
+    padding: 0 0.85rem; /* A bit narrower than the text button */
+    border: 2px solid var(--border-color);
+    background-color: transparent;
+    color: var(--font-color);
+    font-size: 1.1rem; /* Make icon slightly larger */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+#voice-input-btn:hover {
+    background-color: var(--task-bg);
+    border-color: var(--primary-color);
+}
+
+#voice-input-btn.is-listening {
+    /* Style to show when the mic is on */
+    background-color: var(--danger-color);
+    border-color: var(--danger-color);
+    color: #ffffff;
+}
+
+#voice-input-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* END: NEW VOICE BUTTON STYLES */
 
 /* TIMER STYLES */
 .timer-container {
@@ -199,6 +234,87 @@ header p {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     color: #ffffff;
+}
+
+/* START: NEW TIMER MODE STYLES */
+.timer-modes {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.timer-mode-btn {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--font-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    transition: all var(--transition-speed);
+}
+
+.timer-mode-btn:hover {
+    opacity: 1;
+    background-color: var(--task-bg);
+}
+
+.timer-mode-btn.active {
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-color: var(--primary-color);
+    opacity: 1;
+}
+/* END: NEW TIMER MODE STYLES */
+
+
+/* START: NEW TIME ADJUSTMENT STYLES */
+.timer-adjust-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+#timer-display {
+    /* (This rule already exists, we're just checking it) */
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 0; /* Removed margin-bottom */
+}
+
+.time-adjust-btn {
+    background: none;
+    border: 2px solid var(--border-color);
+    color: var(--font-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all var(--transition-speed);
+}
+
+.time-adjust-btn:hover {
+    opacity: 1;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.time-adjust-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+/* END: NEW TIME ADJUSTMENT STYLES */
+
+/* (This rule already exists, we're just adjusting it) */
+.timer-controls {
+    margin-top: 1.5rem; /* Added margin-top to replace timer-display's margin */
 }
 
 /* Task List */
@@ -327,7 +443,35 @@ header p {
 /* END: UPDATED FOOTER STYLES */
 
 
-/* START: RESPONSIVE STYLES FOR MOBILE */
+/* START: NEW DASHBOARD STYLES */
+.dashboard-container {
+    background-color: var(--task-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.dashboard-title {
+    text-align: center;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--border-color);
+    margin-bottom: 1.5rem;
+}
+
+.chart-wrapper {
+    width: 100%;
+    max-height: 300px;
+    position: relative;
+}
+/* END: NEW DASHBOARD STYLES */
+
+
+
+
+
+
+/* START: FULLY IMPROVED RESPONSIVE STYLES FOR MOBILE */
 @media (max-width: 768px) {
     body {
         /* Reduce padding on the sides for smaller screens */
@@ -346,22 +490,6 @@ header p {
         font-size: 1.8rem;
     }
 
-    #task-form {
-        /* Allow the button to wrap below the input if needed */
-        flex-wrap: wrap;
-    }
-
-    #task-input {
-        /* Make the input take full width when wrapped */
-        flex-basis: 100%;
-        margin-bottom: 0.5rem;
-    }
-
-    #task-form button {
-        /* Make the button take full width when wrapped */
-        flex-basis: 100%;
-    }
-
     #timer-display {
         /* Make the timer font smaller to prevent overflow */
         font-size: 3rem;
@@ -371,6 +499,58 @@ header p {
         /* Reduce the top margin for a tighter layout */
         margin-top: 0;
     }
+
+    /* --- FIX FOR TASK FORM --- */
+    #task-form {
+        /* Allow wrapping for very small screens */
+        flex-wrap: wrap;
+    }
+
+    #task-input {
+        /* Reset any desktop-specific styles that interfere */
+        flex-basis: auto;
+        margin-bottom: 0; /* Remove bottom margin */
+        border-radius: 8px 0 0 8px; /* Keep left corners rounded */
+    }
+
+    /* --- This is the key change --- */
+    /* Make both buttons stack together */
+    #task-form button {
+        flex-basis: auto; /* Allow buttons to size naturally */
+    }
+
+    /* Target just the submit button for wrapping */
+    #task-form button[type="submit"] {
+        /* On very small screens, it can wrap if needed */
+        min-width: 100px; /* Give it a minimum width */
+    }
 }
 
-/* END: RESPONSIVE STYLES FOR MOBILE */
+
+/* Even smaller screen adjustments */
+@media (max-width: 480px) {
+    #task-form {
+        gap: 0.5rem; /* Add a gap when items stack */
+    }
+
+    #task-input {
+        /* When stacking, input takes full width */
+        flex-basis: 100%;
+        border-radius: 8px; /* All corners rounded */
+        border-right: 2px solid var(--border-color); /* Add back the right border */
+    }
+
+    #voice-input-btn {
+        /* Mic button grows to fill space next to submit button */
+        flex-grow: 1;
+        border-radius: 8px 0 0 8px; /* Round left corners */
+        margin-left: 0;
+    }
+
+    #task-form button[type="submit"] {
+        flex-grow: 2; /* Submit button takes more space */
+        border-radius: 0 8px 8px 0; /* Round right corners */
+        margin-left: -1px; /* Re-apply border collapse */
+    }
+}
+/* END: FULLY IMPROVED RESPONSIVE STYLES FOR MOBILE */

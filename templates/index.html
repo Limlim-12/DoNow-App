@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -21,15 +22,30 @@
 
         <form id="task-form">
             <input type="text" id="task-input" placeholder="What needs to be done?" autocomplete="off" required>
+            <button type="button" id="voice-input-btn" title="Add task by voice">
+                <i class="fas fa-microphone"></i>
+            </button>
             <button type="submit">Add Task</button>
         </form>
 
+        
+
         <section class="timer-container">
             <h2 class="timer-title">Focus Zone</h2>
-            <div id="timer-display">25:00</div>
+            
+            <div class="timer-modes">
+                <button id="pomodoro-btn" class="timer-mode-btn active">Pomodoro</button>
+                <button id="short-break-btn" class="timer-mode-btn">Short Break</button>
+                <button id="long-break-btn" class="timer-mode-btn">Long Break</button>
+            </div>
+            
+            <div class="timer-adjust-wrapper">
+                <button id="decrease-time-btn" class="time-adjust-btn" title="Decrease 1 min">-</button>
+                <div id="timer-display">25:00</div>
+                <button id="increase-time-btn" class="time-adjust-btn" title="Increase 1 min">+</button>
+            </div>
             <div class="timer-controls">
                 <button id="start-timer-btn">Start</button>
-                <button id="pause-timer-btn">Pause</button>
                 <button id="reset-timer-btn">Reset</button>
             </div>
         </section>
@@ -38,6 +54,13 @@
             <ul id="task-list">
             </ul>
         </main>
+
+        <section class="dashboard-container">
+            <h2 class="dashboard-title">Task Overview</h2>
+            <div class="chart-wrapper">
+                <canvas id="progress-chart"></canvas>
+            </div>
+        </section>
 
     </div>
     <footer class="app-footer">
@@ -52,6 +75,7 @@
             <li><a href="mailto:lim.coronatel@gmail.com" title="Email"><i class="fas fa-envelope"></i></a></li>
         </ul>
     </footer>
+    <audio id="alarm-sound" src="../assets/alarm.mp3" preload="auto"></audio>
     <script src="../assets/script.js"></script>
 </body>
 
